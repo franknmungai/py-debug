@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { loadPyodide } from 'pyodide';
+import { useEffect, useRef } from 'react';
 
-function App() {
+const App = () => {
+  const pyodideRef = useRef();
+
+  useEffect(() => {
+    (async () => {
+      // Throws a "module not found" error
+      pyodideRef.current = await loadPyodide({
+        indexURL: 'http://localhost:3000/static/js',
+      });
+    })();
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      Hello world
+      <img
+        src="http://localhost:3000/logo512.png"
+        width={100}
+        height={100}
+        alt="logo"
+      />
     </div>
   );
-}
+};
 
 export default App;
