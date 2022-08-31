@@ -15,6 +15,7 @@ const App = () => {
   return (
     <div>
       Hello world
+      {/* Image loads successfully from the public folder */}
       <img
         src="http://localhost:3000/logo512.png"
         width={100}
